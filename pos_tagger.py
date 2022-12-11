@@ -45,3 +45,19 @@ def count_word_and_tag(word, tag, train_data=train_tagged_words):
     word_as_tag_count = len(word_list)
 
     return (word_as_tag_count, tag_count)
+
+def count_tag2_given_tag1(t2, t1, train_data=train_tagged_words):
+    """This method returns a tuple
+       containing the count of tag 2
+       given tag 1 and the count of 
+       tag 1.
+    """
+    tags = [pair[1] for pair in train_data]
+    t1_count = len([tag for tag in tags if tag == t1])
+    count_t2_given_t1 = 0
+
+    for pos in range(len(tags)-1):
+        if tags[pos] == t1 and tags[pos+1] == t2:
+            count_t2_given_t1 += 1
+
+    return (count_t2_given_t1, t1_count)
